@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "AlfonsoSdT",
+        "password": "SanchezDeToca",
+        "first_name": "Alfonso",
+        "last_name": "SanchezDeToca",
+        "age": 23,
+        "salary": 123123        
+    },
+    {
+        "id": 2,
+        "name": "JoseGT",
+        "password": "GomezTorres",
+        "first_name": "Jose",
+        "last_name": "SanchezDeToca",
+        "age": 23,
+        "salary": 123123        
+    }
+]
