@@ -1,22 +1,38 @@
-
-
-<body>
-    <div class="supercontainer">
-        <div  class="login" style="text-align: center;">
-            Login
-        </div>
-        <div class ="container">
-            <div class="cuadro">
-                <label for="name">Nombre de usuario </label>
-                <input type="text">
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: black;">  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">  
+        <div class="navbar-end">
+            <div class="navbar-item" style="float: right;">
+                <div class="buttons">
+                    <a class="button is-primary">
+                    <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light">
+                    Log in
+                    </a>
+                </div>
             </div>
         </div>
-        <div class ="container">
-            <div class="cuadro">
-                <label for="name">Contraseña </label>
-                <input type="text">
-            </div>
+       </div>
+    </div>
+</nav>
+<body class="body"> 
+<div class="contenedor">
+    <form class="box">
+        <div class="field">
+          <label class="label">Nombre Usuario</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="Por ejemplo Alfonso">
+          </div>
         </div>
-        <button class ="boton" type="button" style="align-items: center; justify-content: center; display:flex;">Log in</button>
-</div>
-</body>
+      
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" type="password" placeholder="********">
+          </div>
+        </div>
+      
+        <button class="button is-primary">Sign in</button>
+      </form>
+</div>  
