@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { User } from 'src/app/modelo/usuario';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
 import * as data from '../../../assets/users.json';
 @Component({
@@ -9,20 +10,30 @@ import * as data from '../../../assets/users.json';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuarios = JSON.stringify(data);
+  usuarios: User[] = data as User[];
+  nombreUsuario:any;
+  passwordUsuario:any;
   usuario:string = "AlfonsoSdT";
-  @Input() nombre: string = "";
+  sesionIniciada:boolean = false;
+  
+  submitted = false;
 
-  usuarioPrueba: User = new User(1,"AlfonsoSdT","SanchezDeToca","Alfonso","SanchezDeToca",23, 123123);
+  
   constructor(private loginService: LoginService) { 
+    loginService.firstWay();
+  }
+  onSubmit() {
+    this.submitted = true;
+    console.log("Submited");
   }
 
   ngOnInit(): void {
+    
   }
-  comprobarLogin(): any{
-    //Obtengo el nombre del HTML
-
+  comprobarSiEsIgual():boolean{
+    if(this.nombreUsuario == 'AlfonsoSdT' && this.passwordUsuario == 'SanchezDeToca'){ this.sesionIniciada = true}
+    return this.sesionIniciada;
   }
-
-
 }
+
+

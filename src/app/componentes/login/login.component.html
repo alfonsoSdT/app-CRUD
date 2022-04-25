@@ -1,47 +1,70 @@
+<script> 
+  function ejecutaEventoOnclick(){ 
+       var x = 30;
+       window.alert(x);
+  } 
+  </script>
 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: black;">  
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">  
-        <div class="navbar-end">
-            <div class="navbar-item" style="float: right;">
-                <div class="buttons">
-                    <a class="button is-primary">
-                    <strong>Añadir usuario</strong>
-                    </a>
-                    <a class="button is-light">
-                    Log out
-                    </a>
-                </div>
-            </div>
-        </div>
-       </div>
-    </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">  
+      <div class="navbar-end">
+          <div class="navbar-item" style="float: right;">
+              <div class="buttons">
+                  
+              </div>
+          </div>
+      </div>
+     </div>
+  </div>
 </nav>
-<body class="body"> 
-<div class="contenedor">
+<body class="body">
+<div *ngIf="sesionIniciada == false"> 
+  <div class="contenedor">
     <form class="box">
         <div class="field">
           <label class="label" for="nombre">Nombre Usuario</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Por ejemplo Alfonso" id="nombre" name="nombre" required>
+            <input [(ngModel)]="nombreUsuario" id="nombre" name="nombre" class="input" type="text" placeholder="Por ejemplo Alfonso" >
           </div>
         </div>
-
         <div class="field">
-          <label class="label" for="contraseña">Contraseña</label>
+          <label class="label" for="password">Contraseña</label>
           <div class="control">
-            <input class="input" type="password" placeholder="********">
+            <input class="input" [(ngModel)]="passwordUsuario" id="password" name="password" type="password" placeholder="********">
           </div>
-          <div>{{nombre}}</div>
         </div>
 
-        <button class="button is-primary">Log in</button>
+        <button class="button is-primary" (click)="comprobarSiEsIgual()">
+          Log in
+        </button>
+        
       </form>
+  </div>  
+  <div>
+    <div>
+      Nombre
+    </div>
+    <div>
+      {{nombreUsuario}}
+    </div>
+    <div>
+      Contraseña
+    </div>
+    <div>
+      {{passwordUsuario}}
+    </div>
+    <div>
+      {{this.aaa}}
+    </div>
+  </div>
+</div>
+<div *ngIf="sesionIniciada == true">
+    SESION INICIADA
+</div>
 
-      <div>
-        {{nombre}}
-      </div>
-      <div>
-        {{usuarios}}
-      </div>
-</div>  
+
+
+
+ 
+ 
 
