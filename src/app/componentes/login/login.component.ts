@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { User } from 'src/app/modelo/usuario';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
 import * as data from '../../../assets/users.json';
@@ -10,29 +10,42 @@ import * as data from '../../../assets/users.json';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuarios: User[] = data as User[];
-  nombreUsuario:any;
-  passwordUsuario:any;
-  usuario:string = "AlfonsoSdT";
+  
+  
   sesionIniciada:boolean = false;
-  
-  submitted = false;
 
-  
-  constructor(private loginService: LoginService) { 
-    loginService.firstWay();
+  formularioLogIn = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    password: new FormControl('',[Validators.required, Validators.minLength(6),Validators.required,Validators.maxLength(15)])
+  })  
+  constructor(private _loginService: LoginService) { 
   }
   onSubmit() {
-    this.submitted = true;
-    console.log("Submited");
+    // Comprobar validez del formulario (si el formulario no es valido, boton LogIn disabled)
+    // comprobarSiEsIgual para navegar
+    this.sesionIniciada = this.comprobarSiEsIgual();
+    //Navegar  
   }
 
+  get nombreDelUsuario(){
+    return this.formularioLogIn.get('nombre');
+  }
+  get passwordDelUsuario(){
+    return this.formularioLogIn.get('password');
+  }
   ngOnInit(): void {
     
   }
+
+  /**
+   * Funcion que llama al servicio para hacer la comprobacion del usuario y de 
+   * la contraseña con los usuarios mockeados
+   * @returns 
+   */
   comprobarSiEsIgual():boolean{
-    if(this.nombreUsuario == 'AlfonsoSdT' && this.passwordUsuario == 'SanchezDeToca'){ this.sesionIniciada = true}
-    return this.sesionIniciada;
+    // Recuperar datos del formulario
+    return this._loginService.obtenerUsuarioPorNombre(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
+
   }
 }
 

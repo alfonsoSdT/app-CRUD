@@ -20,43 +20,29 @@
 <body class="body">
 <div *ngIf="sesionIniciada == false"> 
   <div class="contenedor">
-    <form class="box">
+    <form [formGroup]= "formularioLogIn" (ngSubmit)="onSubmit()" class="box">
         <div class="field">
           <label class="label" for="nombre">Nombre Usuario</label>
+
           <div class="control">
-            <input [(ngModel)]="nombreUsuario" id="nombre" name="nombre" class="input" type="text" placeholder="Por ejemplo Alfonso" >
+            <p class ="error"[hidden]="!nombreDelUsuario?.errors?.required"> Se necesita Nombre de Usuario</p>
+            <input formControlName="nombre" id="nombre" name="nombre" class="input" type="text" placeholder="Por ejemplo Alfonso" required >
           </div>
+          
         </div>
         <div class="field">
           <label class="label" for="password">Contraseña</label>
           <div class="control">
-            <input class="input" [(ngModel)]="passwordUsuario" id="password" name="password" type="password" placeholder="********">
+            <p class="error" [hidden]="!passwordDelUsuario?.errors?.required"> Se necesita contraseña</p>
+            <input class="input" formControlName="password" id="password" name="password" type="password" placeholder="********">
           </div>
         </div>
-
-        <button class="button is-primary" (click)="comprobarSiEsIgual()">
+        <button class="button is-primary" [disabled]="!formularioLogIn.valid" (click)="onSubmit()">
           Log in
         </button>
         
       </form>
   </div>  
-  <div>
-    <div>
-      Nombre
-    </div>
-    <div>
-      {{nombreUsuario}}
-    </div>
-    <div>
-      Contraseña
-    </div>
-    <div>
-      {{passwordUsuario}}
-    </div>
-    <div>
-      {{this.aaa}}
-    </div>
-  </div>
 </div>
 <div *ngIf="sesionIniciada == true">
     SESION INICIADA

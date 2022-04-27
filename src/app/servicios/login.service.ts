@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../modelo/usuario';
+import  data from '../../assets/users.json';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   usuarios: User[] = [];
-  constructor(private httpClient: HttpClient ) { }
-
-  public firstWay():void{ 
-    getDatos();    
+  sesionIniciada:boolean = false;
+  usuario:any;
+  constructor(private httpClient: HttpClient ) { 
   }
-  public addUsuario():void {
-
+  /**
+   * Funcion que comprueba los datos del formulario con los de los usuarios mockeados, devuelve true si 
+   * nombre y contraseña coinciden con algun usuario. 
+   * @param nombre Nombre de usuario a comprobar.
+   * @param password Contraseña del usuario
+   * @returns Boolean si el usuario existe.
+   */
+  public obtenerUsuarioPorNombre(nombre: string, password: string): boolean {
+    const value = data.filter(data => data.name == nombre && data.password == password);
+    return value.length !==0;
   }
-  public hacerLogIn():void{
+  public comprobarNombre(nombre:any){
     
   }
 }
-var miNombre = document.getElementById('nombre');
-var miPass = document.getElementById('password');
-//Coger del DOM el nombre y las pass
-function getDatos(){
-  miNombre?.addEventListener('click', function(){
-    console.log("Se ha recobido el nombre")
-  })
-  miPass?.addEventListener('click', function(){
-    console.log("Se ha recobido la password")
-  })
-  
-}
+ 
+
+
