@@ -4,6 +4,7 @@ import { FormsModule,FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
 import * as data from '../../../assets/users.json';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,18 +14,20 @@ export class LoginComponent implements OnInit {
   
   
   sesionIniciada:boolean = false;
-
-  formularioLogIn = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    password: new FormControl('',[Validators.required, Validators.minLength(6),Validators.required,Validators.maxLength(15)])
-  })  
-  constructor(private _loginService: LoginService) { 
+  formularioLogIn: FormGroup;
+   
+  constructor(private _loginService: LoginService, private _route: Router) { 
+    this.formularioLogIn = new FormGroup({
+      nombre: new FormControl('', [Validators.required]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6),Validators.required,Validators.maxLength(15)])
+    }) 
   }
   onSubmit() {
     // Comprobar validez del formulario (si el formulario no es valido, boton LogIn disabled)
     // comprobarSiEsIgual para navegar
     this.sesionIniciada = this.comprobarSiEsIgual();
     //Navegar  
+    if(this.sesionIniciada){this._route.navigate(['/CRUD'])}
   }
 
   get nombreDelUsuario(){

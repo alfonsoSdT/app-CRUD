@@ -7,10 +7,7 @@ import  data from '../../assets/users.json';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-  usuarios: User[] = [];
-  sesionIniciada:boolean = false;
-  usuario:any;
+export class LoginService {  
   constructor(private httpClient: HttpClient ) { 
   }
   /**
