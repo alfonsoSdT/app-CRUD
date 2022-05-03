@@ -12,14 +12,13 @@
   </div>
 </nav>
 <body class="body">
-<div *ngIf="sesionIniciada == false"> 
   <div class="contenedor">
-    <form [formGroup]= "formularioLogIn" (ngSubmit)="onSubmit()" class="box">
+    <form [formGroup]= "formularioLogIn" class="box">
         <div class="field">
-          <label class="label" for="nombre">Nombre Usuario</label>
+          <label class="label" for="nombre">Nombre de usuario</label>
 
           <div class="control">
-            <p class ="error"[hidden]="!nombreDelUsuario?.errors?.required"> Se necesita Nombre de Usuario</p>
+            <p class ="error"[hidden]="!nombreDelUsuario?.errors?.required"> Se necesita nombre de usuario</p>
             <input formControlName="nombre" id="nombre" name="nombre" class="input" type="text" placeholder="Por ejemplo Alfonso" required >
           </div>
           
@@ -32,15 +31,26 @@
           </div>
         </div>
         <button class="button is-primary" [disabled]="!formularioLogIn.valid" (click)="onSubmit()">
-          Log in
+          Iniciar sesión
         </button>
-        
       </form>
   </div>  
-</div>
-<div *ngIf="sesionIniciada == true">
-    SESION INICIADA
-</div>
+
+  <div *ngIf="muestraModal == true">
+    <div id="modal-js-example" style="display: flex;" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <p>El nombre de usuario y/o contraseña no son correctos</p>
+          <button class="button is-danger" aria-label="close" (click)="displayModal()">Cerrar</button>
+          </div>
+          
+      </div>
+    </div> 
+  </div>
+ 
+
+
 
 
 

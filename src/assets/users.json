@@ -17,5 +17,14 @@
         "last_name": "SanchezDeToca",
         "age": 23,
         "salary": 123123        
+    },
+    {
+        "id": 2,
+        "name": "Alfonso",
+        "password": "123456789",
+        "first_name": "Jose",
+        "last_name": "SanchezDeToca",
+        "age": 23,
+        "salary": 123123        
     }
 ]

@@ -8,7 +8,7 @@
                         <strong>Añadir usuario</strong>
                     </a>
                     <a class="button is-light" routerLink="/">
-                        <strong>Log out</strong>
+                        <strong>Cerrar sesión</strong>
                     </a>
                 </div>
             </div>
@@ -16,4 +16,26 @@
        </div>
     </div>
   </nav>
-<p>crud works!</p>
+  <table class = 'table is-striped'>
+        <thead>
+            <tr>
+                <th><abbr title="id">ID</abbr></th>
+                <th><abbr title="name">Nombre de usuario</abbr></th>
+                <th><abbr title="firstName">Nombre</abbr></th>
+                <th><abbr title="lastName">Apellido</abbr></th>
+                <th><abbr title="age">Edad</abbr></th>
+                <th><abbr title="salary">Salario</abbr></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="is-selected">
+              <th>{{userJson.id}}</th>
+              <td>{{userJson.name}}</td>
+              <td>{{userJson.firstName}}</td>
+              <td>{{userJson.lastName}}</td>
+              <td>{{userJson.age}}</td>
+              <td>{{userJson.salario}}</td>
+            </tr>
+        </tbody>
+  </table>
+

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../modelo/usuario';
 import  data from '../../assets/users.json';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {  
+  
   constructor(private httpClient: HttpClient ) { 
   }
   /**
@@ -21,10 +20,20 @@ export class LoginService {
     const value = data.filter(data => data.name == nombre && data.password == password);
     return value.length !==0;
   }
-  public comprobarNombre(nombre:any){
-    
+  public addUsuario(nombre: string, password: string){
+      let h = {
+        id: 0,
+        name: nombre,
+        password: password,
+        firstName: '',
+        age: 0,
+        salario: 0
+      } 
+      localStorage.setItem('usuario', JSON.stringify(h));  
+      
   }
 }
+
  
 
 

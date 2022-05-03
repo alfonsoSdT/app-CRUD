@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   
-  
+  muestraModal = false;
   sesionIniciada:boolean = false;
   formularioLogIn: FormGroup;
+  userAdded= false;
    
   constructor(private _loginService: LoginService, private _route: Router) { 
     this.formularioLogIn = new FormGroup({
@@ -27,7 +28,15 @@ export class LoginComponent implements OnInit {
     // comprobarSiEsIgual para navegar
     this.sesionIniciada = this.comprobarSiEsIgual();
     //Navegar  
-    if(this.sesionIniciada){this._route.navigate(['/CRUD'])}
+    if(this.sesionIniciada){
+      //Añadimos el usuario al local Storage
+      this.addUsuario();
+      //Navegamos al componente CRUD
+      this._route.navigate(['/CRUD']);
+    }
+    else {
+       this.displayModal();
+    }
   }
 
   get nombreDelUsuario(){
@@ -48,7 +57,21 @@ export class LoginComponent implements OnInit {
   comprobarSiEsIgual():boolean{
     // Recuperar datos del formulario
     return this._loginService.obtenerUsuarioPorNombre(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
-
+  }
+  /**
+   * Funcion que se encarga de actualizar muestraModal cuando el usuario y/o la contraseña no son correctos
+   * @returns 
+   */
+  displayModal(){
+    if(this.muestraModal){ this.muestraModal = false;}
+    else{ this.muestraModal = true;}
+  }
+  /**
+   * Funcion que se encarga de añadir el usuario que recibimos al localStorage
+   * @returns
+   */
+  addUsuario(){
+    this._loginService.addUsuario(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value);
   }
 }
 
