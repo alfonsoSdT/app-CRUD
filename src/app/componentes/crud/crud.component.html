@@ -4,7 +4,7 @@
         <div class="navbar-end">
             <div class="navbar-item" style="float: right;">
                 <div class="buttons" style="float: right;">
-                    <a class="button is-primary" >
+                    <a class="button is-primary" routerLink="/CRUD/add" >
                         <strong>Añadir usuario</strong>
                     </a>
                     <a class="button is-light" routerLink="/">
@@ -28,14 +28,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="is-selected">
-              <th>{{userJson.id}}</th>
-              <td>{{userJson.name}}</td>
-              <td>{{userJson.firstName}}</td>
-              <td>{{userJson.lastName}}</td>
-              <td>{{userJson.age}}</td>
-              <td>{{userJson.salario}}</td>
-            </tr>
+            <tr  class="is-selected" >
+                <th>{{userJson.id}}</th>
+                <td>{{userJson.name}}</td>
+                <td>{{userJson.firstName}}</td>
+                <td>{{userJson.lastName}}</td>
+                <td>{{userJson.age}}</td>
+                <td>{{userJson.salario}}</td>
+              </tr>
+            
         </tbody>
   </table>
 

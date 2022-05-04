@@ -8,12 +8,14 @@ import { CrudComponent } from './componentes/crud/crud.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './componentes/crud/add/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CrudComponent
+    CrudComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

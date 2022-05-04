@@ -1,0 +1,85 @@
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: black;">  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">  
+        <div class="navbar-end">
+            <div class="navbar-item" style="float: right;">
+                <div class="buttons" style="float: right;">
+                    <a class="button is-primary" >
+                        <strong>Añadir usuario</strong>
+                    </a>
+                    <a class="button is-light" routerLink="/">
+                        <strong>Cerrar sesión</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+  </nav>
+  <body>
+    <form [formGroup]= "formularioLogIn" class="box">
+
+        <div class="field">
+            <label class="label" for="id">ID</label>
+            
+            <div class="control">
+              <input class="input" formControlName="id" id="id" name="id" type="number" placeholder="Por ejemplo 1">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="firstName">Nombre</label>
+            
+            <div class="control">
+              <input class="input" formControlName="firstName" id="firstName" name="firstName" type="text" placeholder="Por ejemplo Alfonso">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="lastName">Apellido</label>
+            
+            <div class="control">
+              <input class="input" formControlName="lastName" id="lastName" name="lastName" type="text" placeholder="Por ejemplo Sanchez de Toca">
+            </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="name">Nombre de usuario</label>
+
+          <div class="control">
+            <input formControlName="name" id="name" name="name" class="input" type="text" placeholder="Por ejemplo Alfonso" required >
+          </div>
+          
+        </div>
+        <div class="field">
+          <label class="label" for="password">Contraseña</label>
+
+          <div class="control">
+            <input class="input" formControlName="password" id="password" name="password" type="password" placeholder="********">
+          </div>
+        </div>
+       
+
+        <div class="field">
+            <label class="label" for="age">Edad</label>
+            
+            <div class="control">
+              <input class="input" formControlName="age" id="age" name="age" type="number" placeholder="Por ejemplo 23">
+            </div>
+        </div>
+
+        
+
+        <div class="field">
+            <label class="label" for="salary">Salario</label>
+            
+            <div class="control">
+              <input class="input" formControlName="salary" id="salary" name="salary" type="number" placeholder="Por ejemplo 50.000">
+            </div>
+        </div>
+
+        <button class="button is-primary" [disabled]="!formularioLogIn.valid" (click)="onSubmit()">
+          Añadir usuario
+        </button>
+      </form>
+  </body>
+
