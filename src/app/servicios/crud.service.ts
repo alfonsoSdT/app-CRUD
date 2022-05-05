@@ -7,6 +7,7 @@ import { first } from 'rxjs';
 export class CrudService {
 
   constructor() { }
+
   addUsuario(nombre:string, password: string, id: number, firstName: string, age: number, salario: number){
     let h = {
       id: id,
@@ -14,8 +15,8 @@ export class CrudService {
       password: password,
       firstName: firstName,
       age: age,
-      salario: salario
+      salary: salario
     } 
-    localStorage.setItem('usuario_id:' + id, JSON.stringify(h)); 
+    localStorage.setItem('usuario_id:' + h.id, JSON.stringify(h)); 
   }
 }

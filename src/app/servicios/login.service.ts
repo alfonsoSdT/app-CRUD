@@ -29,7 +29,7 @@ export class LoginService {
         age: 0,
         salario: 0
       } 
-      localStorage.setItem('usuario_id:' + h.id, JSON.stringify(h));  
+      localStorage.setItem('usuario_id:', nombre);  
       
   }
 }

@@ -13,10 +13,15 @@ export class CrudComponent implements OnInit {
   usuarios = new Array(4); //Lista de usuarios del localStorage (formato JSON)
   usuario1: any;
   usuario2: any;
+  userJson1: any;
+  userJson2: any;
+
   constructor(private _crudService: CrudService, private _route: Router) { 
     this.usuarioIni = localStorage.getItem('usuario_id:0');
     this.userJson = JSON.parse(this.usuarioIni);
-    console.log(this.usuarioIni)
+
+    console.log(this.userJson)
+    this.mostrarUsuarios();
     
   }
 
@@ -34,12 +39,15 @@ export class CrudComponent implements OnInit {
 
   }
   mostrarUsuarios(){
-    var i;
-    for(i=1;i<=4;i++){ 
-      this.usuario2 = localStorage.getItem('usuario_id:' + i)
-      this.usuarios[i] = JSON.parse(this.usuario2)
-      console.log("Se imprime el usuario " + this.usuario2) 
-    }
+    this.usuario1 = localStorage.getItem('usuario_id:1');
+    this.userJson1 = JSON.parse(this.usuario1);
+
+    this.usuario2 = localStorage.getItem('usuario_id:2');
+    this.userJson2 = JSON.parse(this.usuario2);
+
+    
+    console.log(this.userJson1)
+    console.log(this.userJson2)
     
   }
   
