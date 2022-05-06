@@ -1,0 +1,11 @@
+.cuadro{
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+}
+.tit{ 
+    border-bottom: 3px solid green;;
+    color: white;
+    
+    margin: 5px;
+}

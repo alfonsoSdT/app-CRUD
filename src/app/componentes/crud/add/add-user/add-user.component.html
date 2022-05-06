@@ -1,21 +1,31 @@
 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: black;">  
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">  
-        <div class="navbar-end">
-            <div class="navbar-item" style="float: right;">
-                <div class="buttons" style="float: right;">
-                    <a class="button is-primary" >
-                        <strong>Añadir usuario</strong>
-                    </a>
-                    <a class="button is-light" routerLink="/">
-                        <strong>Cerrar sesión</strong>
-                    </a>
-                </div>
-            </div>
-        </div>
-       </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">  
+      <div class="navbar-item ">
+          <a class="button is-light"  routerLink="/CRUD">
+              <img src="../../../assets/home.png" class="home" style=" margin: 3px;">
+          </a>
+      </div>
     </div>
-  </nav>
+      <div class="navbar-end" style="display: block;">
+          <div class="navbar-item" >
+              <div style=" margin: 3px;">
+                  <div class="tit">
+                      Usuario iniciado:
+                  </div>
+                  <div class="cuadro">
+                      {{usuarioIni}}
+                  </div>
+              </div>
+              <a class="button is-light"  routerLink="/">
+                  <img src="../../../assets/apagar.png" class="cerrar" style=" margin: 3px;">
+                  <strong>Cerrar sesión</strong>
+              </a>
+          </div>
+          
+      </div>
+  </div>
+</nav>
   <body>
     <form [formGroup]= "formularioLogIn" class="box">
 

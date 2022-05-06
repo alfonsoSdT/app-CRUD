@@ -10,8 +10,10 @@ import { CrudService } from 'src/app/servicios/crud.service';
 })
 export class AddUserComponent implements OnInit {
   formularioLogIn: FormGroup;
+  usuarioIni:any;
 
   constructor(private _crudService: CrudService, private _route: Router) {
+    this.obtenerUsuario();
     this.formularioLogIn = new FormGroup({
       id: new FormControl('', [Validators.required]),
       firstName: new FormControl('', [Validators.required]),
@@ -29,7 +31,7 @@ export class AddUserComponent implements OnInit {
     //Añadir el usuario el localStorage
     this.addUsuario;
     //Ver si esta
-    console.log(localStorage.getItem('usuario_id:25' ));
+    console.log(localStorage.getItem('usuario_id:'));
     //Volvemos a la tabla con todos los usuarios
     
   }
@@ -40,6 +42,9 @@ export class AddUserComponent implements OnInit {
     console.log(this.formularioLogIn)
     this._crudService.addUsuario(this.formularioLogIn.get("name")?.value,this.formularioLogIn.get("password")?.value, this.formularioLogIn.get("id")?.value, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
     
+  }
+  obtenerUsuario(){
+    this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
   }
 
 }

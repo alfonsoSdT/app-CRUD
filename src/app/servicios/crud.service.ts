@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs';
+import data from '../../assets/clientes.json';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,17 @@ export class CrudService {
   constructor() { }
 
   addUsuario(nombre:string, password: string, id: number, firstName: string, age: number, salario: number){
-    let h = {
-      id: id,
-      name: nombre,
-      password: password,
-      firstName: firstName,
-      age: age,
-      salary: salario
-    } 
-    localStorage.setItem('usuario_id:' + h.id, JSON.stringify(h)); 
+    
   }
+  mostrarUsuarios():string{
+    var h: string;
+    h = JSON.stringify(data);
+    return h;
+
+    // Asignar a una variable.
+  }
+  obtenerUsuarioIniciado(){
+    return localStorage.getItem('usuario_iniciado:');
+  }
+  
 }

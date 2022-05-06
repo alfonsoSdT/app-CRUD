@@ -1,0 +1,17 @@
+.cuadro{
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+}
+.tit{ 
+    border-bottom: 3px solid green;;
+    color: white;
+    
+    margin: 5px;
+}
+.home{
+    filter: contrast(20%) sepia(60) hue-rotate(60deg) saturate(1000%); 
+}
+.cerrar{
+    filter: contrast(20%) sepia(1) hue-rotate(-45deg) saturate(1000%);
+}

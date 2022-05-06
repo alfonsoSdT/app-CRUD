@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import  data from '../../assets/users.json';
+import data from '../../assets/users.json';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,11 @@ export class LoginService {
         age: 0,
         salario: 0
       } 
-      localStorage.setItem('usuario_id:', nombre);  
+      localStorage.setItem('usuario_iniciado:', nombre);  
       
+  }
+  obtenerUsuarioIniciado(){
+    return localStorage.getItem('usuario_iniciado:');
   }
 }
 

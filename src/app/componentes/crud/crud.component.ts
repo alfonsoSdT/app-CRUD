@@ -15,41 +15,30 @@ export class CrudComponent implements OnInit {
   usuario2: any;
   userJson1: any;
   userJson2: any;
+  data:any;
 
   constructor(private _crudService: CrudService, private _route: Router) { 
-    this.usuarioIni = localStorage.getItem('usuario_id:0');
-    this.userJson = JSON.parse(this.usuarioIni);
-
-    console.log(this.userJson)
-    this.mostrarUsuarios();
-    
+    this.obtenerUsuarioIniciado();
+    this.data = JSON.parse(this._crudService.mostrarUsuarios());  
   }
 
   ngOnInit(): void {
-    
   }
+  /**
+   * 
+   */
   addUsuario(){
     this._route.navigate(['/CRUD/add']);
   }
-
-  eliminarUsuario(){
-
+  /**
+   * 
+   */
+  obtenerUsuarioIniciado(){
+    this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
   }
-  crearUsuario(){
 
-  }
-  mostrarUsuarios(){
-    this.usuario1 = localStorage.getItem('usuario_id:1');
-    this.userJson1 = JSON.parse(this.usuario1);
-
-    this.usuario2 = localStorage.getItem('usuario_id:2');
-    this.userJson2 = JSON.parse(this.usuario2);
-
-    
-    console.log(this.userJson1)
-    console.log(this.userJson2)
-    
-  }
-  
+  eliminarUsuario(id: string){
+    // LLamada al servicio para borrar por id
+  } 
 
 }
