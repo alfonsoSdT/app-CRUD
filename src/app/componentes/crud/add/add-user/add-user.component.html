@@ -60,14 +60,7 @@
           </div>
           
         </div>
-        <div class="field">
-          <label class="label" for="password">Contraseña</label>
-
-          <div class="control">
-            <input class="input" formControlName="password" id="password" name="password" type="password" placeholder="********">
-          </div>
-        </div>
-       
+           
 
         <div class="field">
             <label class="label" for="age">Edad</label>
@@ -85,7 +78,7 @@
             </div>
         </div>
 
-        <button class="button is-primary" [disabled]="!formularioLogIn.valid" (click)="onSubmit()">
+        <button class="button is-primary" [disabled]="!formularioLogIn.valid" (click)="addUsuario()">
           Añadir usuario
         </button>
       </form>

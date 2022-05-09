@@ -3,7 +3,7 @@
       <div class="navbar-start">  
         <div class="navbar-item ">
             <a class="button is-light"  routerLink="/CRUD">
-                <img src="../../../assets/home.png" style=" margin: 3px;">
+                <img src="../../../assets/home.png" class="home" style=" margin: 3px;">
             </a>
         </div>
       </div>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <a class="button is-light"  routerLink="/">
-                    <img src="../../../assets/apagar.png" style=" margin: 3px;">
+                    <img src="../../../assets/apagar.png" class="cerrar" style=" margin: 3px;">
                     <strong>Cerrar sesión</strong>
                 </a>
             </div>
@@ -35,7 +35,7 @@
                 <th><abbr title="lastName">Apellido</abbr></th>
                 <th><abbr title="age">Edad</abbr></th>
                 <th><abbr title="salary">Salario</abbr></th>
-                <th><abbr title="salary">Acciones</abbr></th>
+                <th><abbr title="acciones" style="text-align: center;">Acciones</abbr></th>
             </tr>
         </thead>
         <tbody>
@@ -46,19 +46,21 @@
                     <th>{{datos.last_name}}</th>
                     <th>{{datos.age}}</th>
                     <th>{{datos.salary}}</th>
-                    <a class="button is-primary" style="margin: 5px;">
-                        <strong>Eliminar</strong>
-                    </a>
-                    <a class="button is-primary" style="margin: 5px;">
-                        <strong>Modificar</strong>
-                    </a>
+                    <th>
+                        <a class="button is-primary" style="margin: 5px;" (click)="eliminarUsuario(datos.id)">
+                            <strong>Eliminar</strong>
+                        </a>
+                        <a class="button is-primary" style="margin: 5px;" (click)="addUsuario()">
+                            <strong>Modificar</strong>
+                        </a>
+                    </th>
             </tr>
                 
             
         </tbody>
   </table>
   
-  <a class="button is-primary" style="margin: 5px;" routerLink="/CRUD/add">
+  <a class="button is-primary" style="margin: 5px;" (click)="addUsuario()">
     <strong>Añadir Cliente</strong>
 </a>
 

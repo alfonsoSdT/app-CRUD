@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './componentes/crud/add/add-user/add-user.component';
+import { ModificateUserComponent } from './componentes/crud/modificate/modificate-user/modificate-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CrudComponent,
-    AddUserComponent
+    AddUserComponent,
+    ModificateUserComponent
   ],
   imports: [
     BrowserModule,

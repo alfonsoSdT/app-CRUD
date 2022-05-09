@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { CrudService } from 'src/app/servicios/crud.service';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-modificate-user',
+  templateUrl: './modificate-user.component.html',
+  styleUrls: ['./modificate-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class ModificateUserComponent implements OnInit {
+
   formularioLogIn: FormGroup;
   usuarioIni:any;
 
