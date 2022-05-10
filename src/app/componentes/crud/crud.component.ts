@@ -48,5 +48,8 @@ export class CrudComponent{
   modificarUsuario(id: number){
     this._route.navigate(['/CRUD/mod/' + id])
   }
-
+  cerrarSesion(){
+    this._crudService.cerrarSesion();
+    this._route.navigate(['/']);
+  }
 }

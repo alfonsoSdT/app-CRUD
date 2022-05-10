@@ -50,13 +50,33 @@ export class CrudService {
   obtenerUsuarioIniciado(){
     return localStorage.getItem('usuario_iniciado:');
   }
+  modificarUsuario(id: number,nombre:string,firstName: string, lastName:string ,age: number, salario: number){
+    let h = {
+      id: id,
+      name: nombre,
+      first_name: firstName,
+      last_name: lastName,
+      age: age,
+      salary: salario
+    } 
+    data.push(h)
+  }
+  obtenerElUltimoID(){
+    var id,h;
+    h = data[data.length-1];
+    return h.id;
+  }
   /**
    * 
    * @param id id del cliente a modificar
    * @returns los datos del cliente
    */
   obtenerUsuario(id:number){
-    return data.find(obj=> obj.id === id )
+    const h = data.find(data => data.id == id)
+    return JSON.stringify(h);
+  }
+  cerrarSesion(){
+    localStorage.clear();
   }
   
 }

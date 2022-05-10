@@ -17,7 +17,7 @@
                       {{usuarioIni}}
                   </div>
               </div>
-              <a class="button is-light"  routerLink="/">
+              <a class="button is-light"  (click)="cerrarSesion()">
                   <img src="../../../assets/apagar.png" class="cerrar" style=" margin: 3px;">
                   <strong>Cerrar sesión</strong>
               </a>
@@ -28,14 +28,6 @@
 </nav>
   <body>
     <form [formGroup]= "formularioLogIn" class="box">
-
-        <div class="field">
-            <label class="label" for="id">ID</label>
-            
-            <div class="control">
-              <input class="input" formControlName="id" id="id" name="id" type="number" placeholder="Por ejemplo 1">
-            </div>
-        </div>
 
         <div class="field">
             <label class="label" for="firstName">Nombre</label>

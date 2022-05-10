@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CrudService } from 'src/app/servicios/crud.service';
 
 @Component({
@@ -12,17 +12,26 @@ export class ModificateUserComponent implements OnInit {
 
   formularioLogIn: FormGroup;
   usuarioIni:any;
+  id: any;
+  cliente: any;
+  clienteJson: any;
 
-  constructor(private _crudService: CrudService, private _route: Router) {
+  constructor(private _crudService: CrudService, private _route: Router, private route: ActivatedRoute) {
     this.obtenerUsuario();
+
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    this.obtenerDatosDelCliente();
+
     this.formularioLogIn = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-      age: new FormControl('', [Validators.required]),
-      salary: new FormControl('', [Validators.required])
-    }) 
+      firstName: new FormControl(this.clienteJson.first_name, [Validators.required]),
+      lastName: new FormControl(this.clienteJson.last_name, [Validators.required]),
+      name: new FormControl(this.clienteJson.name, [Validators.required]),
+      age: new FormControl(this.clienteJson.age, [Validators.required]),
+      salary: new FormControl(this.clienteJson.salary, [Validators.required])
+    });
+    
+    
    }
 
   ngOnInit(): void {
@@ -40,6 +49,20 @@ export class ModificateUserComponent implements OnInit {
    */
   obtenerUsuario(){
     this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
+  } 
+  /**
+   * Funcion que se encarga de obtener los datos del cliente que se esta modificando
+   */
+  obtenerDatosDelCliente(){
+    this.cliente = this._crudService.obtenerUsuario(this.id);
+    this.clienteJson = JSON.parse(this.cliente);
+    console.log(this.clienteJson);
   }
-
+  /**
+   * Funcion que se encarga de llamar al service para cerrar la sesion y navegar al logIn
+   */
+  cerrarSesion(){
+    this._crudService.cerrarSesion();
+    this._route.navigate(['/']);
+  }
 }

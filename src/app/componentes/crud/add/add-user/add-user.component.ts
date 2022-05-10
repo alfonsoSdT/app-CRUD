@@ -11,11 +11,11 @@ import { CrudService } from 'src/app/servicios/crud.service';
 export class AddUserComponent implements OnInit {
   formularioLogIn: FormGroup;
   usuarioIni:any;
+  idNuevo:any;
 
   constructor(private _crudService: CrudService, private _route: Router) {
     this.obtenerUsuario();
     this.formularioLogIn = new FormGroup({
-      id: new FormControl('', [Validators.required]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -31,7 +31,8 @@ export class AddUserComponent implements OnInit {
    * que se recibe del formulario
    */
   addUsuario(){
-    this._crudService.addUsuario(this.formularioLogIn.get("name")?.value,this.formularioLogIn.get("id")?.value, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
+    this.idNuevo = this._crudService.obtenerElUltimoID() + 1;
+    this._crudService.addUsuario(this.formularioLogIn.get("name")?.value,this.idNuevo, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
     this._route.navigate(['CRUD'])
   }
   /**
@@ -39,6 +40,10 @@ export class AddUserComponent implements OnInit {
    */
   obtenerUsuario(){
     this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
+  }
+  cerrarSesion(){
+    this._crudService.cerrarSesion();
+    this._route.navigate(['/']);
   }
 
 }
