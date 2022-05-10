@@ -9,6 +9,13 @@
     
     margin: 5px;
 }
+.body{
+	background-color: lightgray;
+	width: 100%;
+	height: 92%;
+	position: absolute;
+	display: flex;
+}
 .home{
     filter: contrast(20%) sepia(60) hue-rotate(60deg) saturate(1000%); 
 }
