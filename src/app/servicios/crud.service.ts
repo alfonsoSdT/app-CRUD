@@ -58,8 +58,8 @@ export class CrudService {
       last_name: lastName,
       age: age,
       salary: salario
-    } 
-    data.push(h)
+    }
+    data[id-1] = h;
   }
   obtenerElUltimoID(){
     var id,h;

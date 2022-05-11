@@ -59,6 +59,13 @@ export class ModificateUserComponent implements OnInit {
     console.log(this.clienteJson);
   }
   /**
+   * Funcion que se encarga de guardar los datos que se reciben en el formulario
+   */
+  guardarDatosModificados(){
+    this._crudService.modificarUsuario(this.id, this.formularioLogIn.get("name")?.value,this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
+    this._route.navigate(['CRUD'])
+  }
+  /**
    * Funcion que se encarga de llamar al service para cerrar la sesion y navegar al logIn
    */
   cerrarSesion(){
