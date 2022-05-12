@@ -13,7 +13,6 @@ export class ModificateUserComponent implements OnInit {
   formularioLogIn: FormGroup;
   usuarioIni:any;
   id: any;
-  cliente: any;
   clienteJson: any;
 
   constructor(private _crudService: CrudService, private _route: Router, private route: ActivatedRoute) {
@@ -54,8 +53,9 @@ export class ModificateUserComponent implements OnInit {
    * Funcion que se encarga de obtener los datos del cliente que se esta modificando
    */
   obtenerDatosDelCliente(){
-    this.cliente = this._crudService.obtenerUsuario(this.id);
-    this.clienteJson = JSON.parse(this.cliente);
+    let cliente;
+    cliente = this._crudService.obtenerUsuario(this.id);
+    this.clienteJson = JSON.parse(cliente);
     console.log(this.clienteJson);
   }
   /**
