@@ -17,7 +17,7 @@
                         {{this.usuarioIni}}
                     </div>
                 </div>
-                <a class="button is-light"  (click)="cerrarSesion()">
+                <a class="button is-light"  (click)="closeSession()">
                     <img src="../../../assets/apagar.png" class="cerrar" style=" margin: 3px;">
                     <strong>Cerrar sesión</strong>
                 </a>
@@ -49,10 +49,10 @@
                             <th>{{datos.age}}</th>
                             <th>{{datos.salary}}</th>
                             <th>
-                                <a class="button is-primary" style="margin: 5px;" (click)="eliminarUsuario(datos.id)">
+                                <a class="button is-primary" style="margin: 5px;" (click)="deleteUser(datos.id)">
                                     <strong>Eliminar</strong>
                                 </a>
-                                <a class="button is-primary" style="margin: 5px;" (click)="modificarUsuario(datos.id)">
+                                <a class="button is-primary" style="margin: 5px;" (click)="updateUser(datos.id)">
                                     <strong>Modificar</strong>
                                 </a>
                             </th>
@@ -62,7 +62,7 @@
                 </tbody>
         </table>
     </div>
-    <a class="button is-primary" style="margin: 10px; " (click)="addUsuario()">
+    <a class="button is-primary" style="margin: 10px; " (click)="addUser()">
         <strong>Añadir Cliente</strong>
     </a>
 </body>

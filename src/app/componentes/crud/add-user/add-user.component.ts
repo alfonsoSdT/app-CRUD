@@ -8,12 +8,12 @@ import { CrudService } from 'src/app/servicios/crud.service';
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent{
   formularioLogIn: FormGroup;
-  usuarioIni:any;
+  usuarioIni: string|null = null;
 
   constructor(private _crudService: CrudService, private _route: Router) {
-    this.obtenerUsuario();
+    this.getUserLogIn();
     this.formularioLogIn = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -22,26 +22,28 @@ export class AddUserComponent implements OnInit {
       salary: new FormControl('', [Validators.required])
     }) 
    }
+  /**
+   * Calls the service to add the client and navegate to the crud component
+   */
+  createUser(){
+    let idNew;
+    idNew = this._crudService.obtenerElUltimoID() + 1;
 
-  ngOnInit(): void {
+    
+
+    this._crudService.addUsuario(this.formularioLogIn.get("name")?.value, idNew, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
+    this._route.navigate(['crud']);
   }
   /**
-   * Funcion que se encarga de llamar al servicio de CRUD y añade el cliente nuevo con los datos
-   * que se recibe del formulario
+   * Get the name of the user logged in
    */
-  addUsuario(){
-    let idNuevo;
-    idNuevo = this._crudService.obtenerElUltimoID() + 1;
-    this._crudService.addUsuario(this.formularioLogIn.get("name")?.value, idNuevo, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
-    this._route.navigate(['CRUD'])
-  }
-  /**
-   * Funcion que se encarga de llamar al servicio y obtener el usuario iniciado
-   */
-  obtenerUsuario(){
+  getUserLogIn(){
     this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
   }
-  cerrarSesion(){
+  /**
+   * Closes de Session by calling the crudService and navegate to de LogIn 
+   */
+  closeSession(){
     this._crudService.cerrarSesion();
     this._route.navigate(['/']);
   }

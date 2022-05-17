@@ -8,8 +8,8 @@ import { CrudComponent } from './componentes/crud/crud.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddUserComponent } from './componentes/crud/add/add-user/add-user.component';
-import { ModificateUserComponent } from './componentes/crud/modificate/modificate-user/modificate-user.component';
+import { AddUserComponent } from './componentes/crud/add-user/add-user.component';
+import { ModificateUserComponent } from './componentes/crud/modificate-user/modificate-user.component';
 
 @NgModule({
   declarations: [

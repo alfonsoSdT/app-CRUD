@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { User } from 'src/app/modelo/usuario';
+import { User } from 'src/app/modelo/user';
 import { FormsModule,FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   
   muestraModal = false;
   sesionIniciada:boolean = false;
@@ -23,55 +23,47 @@ export class LoginComponent implements OnInit {
       password: new FormControl('',[Validators.required, Validators.minLength(6),Validators.required,Validators.maxLength(15)])
     }) 
   }
-  onSubmit() {
-    // Comprobar validez del formulario (si el formulario no es valido, boton LogIn disabled)
-    // comprobarSiEsIgual para navegar
-    this.sesionIniciada = this.comprobarSiEsIgual();
-    //Navegar  
+  onSubmit() {    
+    this.sesionIniciada = this.checkUser();
     if(this.sesionIniciada){
-      //Añadimos el usuario al local Storage
-      this.addUsuario();
-      //Navegamos al componente CRUD
-      this._route.navigate(['/CRUD']);
+      this.addUser();
+      this._route.navigate(['/crud']);
     }
     else {
        this.displayModal();
     }
   }
 
+  /**
+   * Function that checks if the user exist in the database
+   * @returns true if User exist in database otherwise it returns false
+   */
+  checkUser():boolean{
+    return this._loginService.obtenerUsuarioPorNombre(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
+  }
+  /**
+   * Displays the modal if someone tries to logIn and the name of the user and password doesnt mach
+   *  with any of the users 
+   */
+  displayModal():void{
+    if(this.muestraModal){ this.muestraModal = false;}
+    else{ this.muestraModal = true;}
+  }
+  /**
+   * Adds the name of the user logged in into de localStorage
+   */
+  addUser():void{
+    this._loginService.addUsuario(this.nombreDelUsuario?.value);
+  }
+
+  /**
+   * Funciones que se encargan de obtener los datos del formulario
+   */
   get nombreDelUsuario(){
     return this.formularioLogIn.get('nombre');
   }
   get passwordDelUsuario(){
     return this.formularioLogIn.get('password');
-  }
-  ngOnInit(): void {
-    
-  }
-
-  /**
-   * Funcion que llama al servicio para hacer la comprobacion del usuario y de 
-   * la contraseña con los usuarios mockeados
-   * @returns 
-   */
-  comprobarSiEsIgual():boolean{
-    // Recuperar datos del formulario
-    return this._loginService.obtenerUsuarioPorNombre(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
-  }
-  /**
-   * Funcion que se encarga de actualizar muestraModal cuando el usuario y/o la contraseña no son correctos
-   * @returns 
-   */
-  displayModal(){
-    if(this.muestraModal){ this.muestraModal = false;}
-    else{ this.muestraModal = true;}
-  }
-  /**
-   * Funcion que se encarga de añadir el usuario que recibimos al localStorage
-   * @returns
-   */
-  addUsuario(){
-    this._loginService.addUsuario(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value);
   }
 }
 

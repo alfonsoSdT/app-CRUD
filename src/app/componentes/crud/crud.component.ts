@@ -8,47 +8,54 @@ import { CrudService } from 'src/app/servicios/crud.service';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent{
-  usuarioIni: any;
+  usuarioIni!: string | null;
   userJson: any;
   usuarios = new Array(4); //Lista de usuarios del localStorage (formato JSON)
   data:any;
 
   constructor(private _crudService: CrudService, private _route: Router) { 
-    this.obtenerUsuarioIniciado();
-    this.mostrarUsuarios();
+    this.getUserLoggedIn();
+    this.getUsers();
   }
 
   
   /**
-   * Funcion que sirve para navegar al componente add-user.
+   * Navegates to add-user
    */
-  addUsuario(){
-    this._route.navigate(['/CRUD/add']);
+  addUser():void{
+    this._route.navigate(['/crud/add']);
   }
   /**
-   * Funcion que llama a servicio para obtener los datos de los clientes mockeados y guardarlos en data
+   * Gets into data all the clients mocked
    */
-  mostrarUsuarios(){
+  getUsers():void{
     this.data = JSON.parse(this._crudService.mostrarUsuarios()); 
   }
   /**
-   * Funcion que llama al servicio para obtener el nombre del usuario que ha iniciado sesion
+   * Get the name of the user logged in
    */
-  obtenerUsuarioIniciado(){
+  getUserLoggedIn():void{
     this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
   }
   /**
-   * Funcion que se encarga de eliminar el usuario dado un id que se pasa por parametro
-   * @param id id del usuario
+   * Eliminates the client with a given id
+   * @param id of the client
    */
-  eliminarUsuario(id: number){
+  deleteUser(id: number):void{
     this._crudService.eliminarUsuario(id);
-    this.mostrarUsuarios();
-  } 
-  modificarUsuario(id: number){
-    this._route.navigate(['/CRUD/mod/' + id])
+    this.getUsers();
   }
-  cerrarSesion(){
+  /**
+   * Navegate to modificate-user with the id of the client
+   * @param id of the user to update
+   */
+  updateUser(id: number):void{
+    this._route.navigate([`/crud/edit/${id}`])
+  }
+  /**
+   * Closes de Session by calling the crudService and navegate to de LogIn 
+   */
+  closeSession():void{
     this._crudService.cerrarSesion();
     this._route.navigate(['/']);
   }

@@ -6,8 +6,12 @@
     "app-crud": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
+        "@nrwl/angular:application": {
+          "unitTestRunner": "jest",
+          "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+          "unitTestRunner": "jest"
         }
       },
       "root": "",
@@ -81,7 +85,16 @@
           "options": {
             "browserTarget": "app-crud:build"
           }
-        }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+              "jestConfig": "app-crud/src/app/jest.config.js",
+              "tsConfig": "app-crud/tsconfig.json",
+              "passWithNoTests": true,
+              "setupFile": "apps/myapp/src/test-setup.ts"
+          }
+      }
       }
     }
   },
