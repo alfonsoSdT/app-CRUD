@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Client } from 'src/app/modelo/client';
 import { CrudService } from 'src/app/servicios/crud.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ModificateUserComponent{
 
   formularioLogIn: FormGroup;
   usuarioIni!: string | null;
-  id: any;
+  id!: string | null ;
   clienteJson: any;
 
   constructor(private _crudService: CrudService, private _route: Router, private route: ActivatedRoute) {
@@ -23,8 +24,8 @@ export class ModificateUserComponent{
     this.getUser();
 
     this.formularioLogIn = new FormGroup({
-      firstName: new FormControl(this.clienteJson.first_name, [Validators.required]),
-      lastName: new FormControl(this.clienteJson.last_name, [Validators.required]),
+      firstName: new FormControl(this.clienteJson.firstName, [Validators.required]),
+      lastName: new FormControl(this.clienteJson.lastName, [Validators.required]),
       name: new FormControl(this.clienteJson.name, [Validators.required]),
       age: new FormControl(this.clienteJson.age, [Validators.required]),
       salary: new FormControl(this.clienteJson.salary, [Validators.required])
@@ -34,31 +35,43 @@ export class ModificateUserComponent{
    * Get the name of the user logged in
    */
   getUserLogIn():void{
-    this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
+    this.usuarioIni = this._crudService.getUserLogIn();
   } 
   /**
    * Get JSON of the user according to the ID
    */
   getUser():void{
     let cliente, i;
-    i = +this.id;
-    cliente = this._crudService.obtenerUsuario(i);
-    this.clienteJson = JSON.parse(cliente);
+    i = this.id;
+    if(this.id != null){
+      cliente = this._crudService.getUser(+this.id);
+      this.clienteJson = JSON.parse(cliente);
+    }
+    
   }
   /**
    * Update the user and save all the new information
    */
   updateUser():void{
-    let i;
-    i = +this.id;
-    this._crudService.modificarUsuario(i, this.formularioLogIn.get("name")?.value,this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
-    this._route.navigate(['CRUD'])
+    if(this.id != null){
+      let client: Client = {
+        id: +this.id,
+        name: this.formularioLogIn.get("name")?.value,
+        firstName: this.formularioLogIn.get("firstName")?.value,
+        lastName: this.formularioLogIn.get('lastName')?.value,
+        age: this.formularioLogIn.get("age")?.value,
+        salary: this.formularioLogIn.get("salary")?.value
+      };
+      this._crudService.editUser(client)
+      this._route.navigate(['crud'])
+    }
+    
   }
   /**
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
   closeSession():void{
-    this._crudService.cerrarSesion();
+    this._crudService.closeSession();
     this._route.navigate(['/']);
   }
 }

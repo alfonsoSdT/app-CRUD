@@ -3,24 +3,24 @@
     {
         "id": 1,
         "name": "Cliente1",
-        "first_name": "Alfonso",
-        "last_name": "SanchezDeToca",
+        "firstName": "Alfonso",
+        "lastName": "SanchezDeToca",
         "age": 23,  
         "salary": 123123        
     },
     {
         "id": 2,
         "name": "Cliente2",
-        "first_name": "Jose",
-        "last_name": "Diaz",
+        "firstName": "Jose",
+        "lastName": "Diaz",
         "age": 23,
         "salary": 123123        
     },
     {
         "id": 3,
         "name": "Cliente3",
-        "first_name": "Alberto",
-        "last_name": "Fernandez",
+        "firstName": "Alberto",
+        "lastName": "Fernandez",
         "age": 23,
         "salary": 123123        
     }

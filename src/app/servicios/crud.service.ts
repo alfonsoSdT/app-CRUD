@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import data from '../../assets/clientes.json';
+import { Client } from '../modelo/client';
 
 @Injectable({
   providedIn: 'root'
@@ -16,22 +17,14 @@ export class CrudService {
    * @param age edad de la persona
    * @param salario salario del cliente
    */
-  addUsuario(nombre:string, id: number, firstName: string, lastName:string ,age: number, salario: number){
-    let h = {
-      id: id,
-      name: nombre,
-      first_name: firstName,
-      last_name: lastName,
-      age: age,
-      salary: salario
-    } 
+  addUser(h: Client){
     data.push(h)
   }
   /**
    * Funcion que recibe de clientes.json todos los clientes mockeados y los devuelve en forma de string
    * @returns Devuelve el string de todos los clientes mockeados
    */
-  mostrarUsuarios():string{
+  getUsers():string{
     var h: string;
     h = JSON.stringify(data);
     return h;
@@ -40,28 +33,20 @@ export class CrudService {
    * Funcion que elimina un cliente dado un id que se pasa por parametro
    * @param id recibe como parametro el id del cliente a eliminar
    */
-  eliminarUsuario(id: number){
+  deleteUser(id: number){
     data.splice(id-1,1)
   }
   /**
    * Funcion que devuelve el nombre del usuario que ha iniciado sesion
    * @returns devuelve el nombre del usuarios que ha iniciado sesion
    */
-  obtenerUsuarioIniciado(){
+  getUserLogIn(){
     return localStorage.getItem('usuario_iniciado:');
   }
-  modificarUsuario(id: number,nombre:string,firstName: string, lastName:string ,age: number, salario: number){
-    let h = {
-      id: id,
-      name: nombre,
-      first_name: firstName,
-      last_name: lastName,
-      age: age,
-      salary: salario
-    }
-    data[id-1] = h;
+  editUser(h:Client){
+    data[h.id-1] = h;
   }
-  obtenerElUltimoID(){
+  getLastID(){
     var id,h;
     h = data[data.length-1];
     return h.id;
@@ -71,11 +56,11 @@ export class CrudService {
    * @param id id del cliente a modificar
    * @returns los datos del cliente
    */
-  obtenerUsuario(id:number){
+  getUser(id:number){
     const h = data.find(data => data.id == id)
     return JSON.stringify(h);
   }
-  cerrarSesion(){
+  closeSession(){
     localStorage.clear();
   }
   

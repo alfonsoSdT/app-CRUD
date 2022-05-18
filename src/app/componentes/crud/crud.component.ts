@@ -8,10 +8,9 @@ import { CrudService } from 'src/app/servicios/crud.service';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent{
-  usuarioIni!: string | null;
-  userJson: any;
-  usuarios = new Array(4); //Lista de usuarios del localStorage (formato JSON)
-  data:any;
+  usuarioIni: string | null = null;
+  userJson: JSON | null = null;
+  data!:any ;
 
   constructor(private _crudService: CrudService, private _route: Router) { 
     this.getUserLoggedIn();
@@ -29,20 +28,20 @@ export class CrudComponent{
    * Gets into data all the clients mocked
    */
   getUsers():void{
-    this.data = JSON.parse(this._crudService.mostrarUsuarios()); 
+    this.data = JSON.parse(this._crudService.getUsers()); 
   }
   /**
    * Get the name of the user logged in
    */
   getUserLoggedIn():void{
-    this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
+    this.usuarioIni = this._crudService.getUserLogIn();
   }
   /**
-   * Eliminates the client with a given id
+   * Deletes the client with a given id
    * @param id of the client
    */
   deleteUser(id: number):void{
-    this._crudService.eliminarUsuario(id);
+    this._crudService.deleteUser(id);
     this.getUsers();
   }
   /**
@@ -56,7 +55,7 @@ export class CrudComponent{
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
   closeSession():void{
-    this._crudService.cerrarSesion();
+    this._crudService.closeSession();
     this._route.navigate(['/']);
   }
 }

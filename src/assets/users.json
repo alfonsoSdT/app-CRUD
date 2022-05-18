@@ -3,28 +3,16 @@
     {
         "id": 1,
         "name": "AlfonsoSdT",
-        "password": "SanchezDeToca",
-        "first_name": "Alfonso",
-        "last_name": "SanchezDeToca",
-        "age": 23,  
-        "salary": 123123        
+        "password": "SanchezDeToca"
     },
     {
         "id": 2,
         "name": "JoseGT",
-        "password": "GomezTorres",
-        "first_name": "Jose",
-        "last_name": "SanchezDeToca",
-        "age": 23,
-        "salary": 123123        
+        "password": "GomezTorres"
     },
     {
         "id": 2,
         "name": "Alfonso",
-        "password": "123456789",
-        "first_name": "Jose",
-        "last_name": "SanchezDeToca",
-        "age": 23,
-        "salary": 123123        
+        "password": "123456789"      
     }
 ]

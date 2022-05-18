@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/servicios/crud.service';
+import { Client } from 'src/app/modelo/client';
 
 @Component({
   selector: 'app-add-user',
@@ -26,25 +27,34 @@ export class AddUserComponent{
    * Calls the service to add the client and navegate to the crud component
    */
   createUser(){
-    let idNew;
-    idNew = this._crudService.obtenerElUltimoID() + 1;
-
     
+    let idNew;
+    idNew = this._crudService.getLastID() + 1;
 
-    this._crudService.addUsuario(this.formularioLogIn.get("name")?.value, idNew, this.formularioLogIn.get("firstName")?.value, this.formularioLogIn.get('lastName')?.value, this.formularioLogIn.get("age")?.value, this.formularioLogIn.get("salary")?.value)
+    let h: Client = {
+      id: idNew,
+      name: this.formularioLogIn.get("name")?.value,
+      firstName: this.formularioLogIn.get("firstName")?.value,
+      lastName: this.formularioLogIn.get('lastName')?.value,
+      age: this.formularioLogIn.get("age")?.value,
+      salary: this.formularioLogIn.get("salary")?.value
+    };
+
+    this._crudService.addUser(h);
+
     this._route.navigate(['crud']);
   }
   /**
    * Get the name of the user logged in
    */
   getUserLogIn(){
-    this.usuarioIni = this._crudService.obtenerUsuarioIniciado();
+    this.usuarioIni = this._crudService.getUserLogIn();
   }
   /**
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
   closeSession(){
-    this._crudService.cerrarSesion();
+    this._crudService.closeSession();
     this._route.navigate(['/']);
   }
 
