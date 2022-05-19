@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
 import { CrudComponent } from './componentes/crud/crud.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AddUserComponent } from './componentes/crud/add-user/add-user.component';
 import { ModificateUserComponent } from './componentes/crud/modificate-user/modificate-user.component';
+import { LoginGuardGuard } from './guard/login-guard.guard';
 
 const routes: Routes = [
-  { path: 'crud', component: CrudComponent},
-  { path: '', redirectTo: 'LogIn', pathMatch: 'full'},
-  { path: 'LogIn', component: LoginComponent},
-  { path: 'crud/add', component: AddUserComponent},
-  { path: 'crud/edit/:id', component: ModificateUserComponent},
+  { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'crud', component: CrudComponent, canActivate: [LoginGuardGuard]},
+  { path: 'crud/add', component: AddUserComponent, canActivate: [LoginGuardGuard]},
+  { path: 'crud/edit/:id', component: ModificateUserComponent, canActivate: [LoginGuardGuard]},
 
   
 ];
@@ -19,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

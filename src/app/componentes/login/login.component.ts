@@ -27,7 +27,7 @@ export class LoginComponent {
     this.sesionIniciada = this.checkUser();
     if(this.sesionIniciada){
       this.addUser();
-      this._route.navigate(['/crud']);
+      this._route.navigate(['crud']);
     }
     else {
        this.displayModal();

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './componentes/crud/add-user/add-user.component';
 import { ModificateUserComponent } from './componentes/crud/modificate-user/modificate-user.component';
+import { LoginGuardGuard } from './guard/login-guard.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { ModificateUserComponent } from './componentes/crud/modificate-user/modi
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoginGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
