@@ -26,6 +26,11 @@ export class LoginService {
   obtenerUsuarioIniciado(){
     return localStorage.getItem('usuario_iniciado:');
   }
+  isLogged():boolean {
+    let h = false;
+    if(localStorage.getItem('usuario_iniciado:')){h = true}
+    return h
+  }
 }
 
  

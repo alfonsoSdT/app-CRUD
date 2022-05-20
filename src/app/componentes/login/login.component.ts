@@ -14,6 +14,11 @@ export class LoginComponent {
   
   muestraModal = false;
   sesionIniciada:boolean = false;
+
+  errorDisplayName:boolean = false;
+  errorDisplayPassword:boolean = false;
+  tried:boolean = false;
+
   formularioLogIn: FormGroup;
   userAdded= false;
    
@@ -23,15 +28,30 @@ export class LoginComponent {
       password: new FormControl('',[Validators.required, Validators.minLength(6),Validators.required,Validators.maxLength(15)])
     }) 
   }
-  onSubmit() {    
-    this.sesionIniciada = this.checkUser();
-    if(this.sesionIniciada){
-      this.addUser();
-      this._route.navigate(['crud']);
+  onSubmit() {  
+    this.setErrorName();
+    this.setErrorPassword();
+    if (!(this.nombreDelUsuario?.value == '') && !(this.passwordDelUsuario?.value == ''))  {
+      this.sesionIniciada = this.checkUser();
+      if(this.sesionIniciada){
+        this.addUser();
+        this._route.navigate(['crud']);
+      }
+      else {
+         this.displayModal();
+      }
     }
-    else {
-       this.displayModal();
-    }
+    
+  }
+  setErrorName():void{
+    if(this.nombreDelUsuario?.value == '' && this.nombreDelUsuario?.errors?.required )
+    {this.errorDisplayName = true; this. tried = true;}
+    else{this.errorDisplayName=false;}
+  }
+  setErrorPassword():void{
+    if(this.passwordDelUsuario?.value == '' && this.passwordDelUsuario?.errors?.required )
+    {this.errorDisplayPassword = true; this.tried=true;}
+    else{ this.errorDisplayPassword = false;}
   }
 
   /**
