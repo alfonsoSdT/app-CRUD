@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { LoginService } from './servicios/login.service';
 import { CrudService } from './servicios/crud.service';
 import { Router } from '@angular/router';
@@ -9,27 +9,19 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app-crud';
-  session:boolean = false;
   userLog!: string | null;
   
-  constructor(private _loginService:LoginService, private _crudService: CrudService, private _route: Router){
-    this.session= this._loginService.isLogged();
-    this.getUserLoggedIn();
+  constructor(public loginService:LoginService, private _crudService: CrudService, private _route: Router){
   }
 
   /**
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
    closeSession():void{
-    this._crudService.closeSession();
+    this.loginService.closeSession();
     this._route.navigate(['/']);
   }
-  /**
-   * Get the name of the user logged in
-   */
-   getUserLoggedIn():void{
-    this.userLog = this._crudService.getUserLogIn();
-  }
+
   home():void {
     this._route.navigate(['/crud']);
   }

@@ -50,12 +50,6 @@ export class AddUserComponent{
   getUserLogIn(){
     this.usuarioIni = this._crudService.getUserLogIn();
   }
-  /**
-   * Closes de Session by calling the crudService and navegate to de LogIn 
-   */
-  closeSession(){
-    this._crudService.closeSession();
-    this._route.navigate(['/']);
-  }
+
 
 }

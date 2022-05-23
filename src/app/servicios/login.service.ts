@@ -6,8 +6,14 @@ import data from '../../assets/users.json';
   providedIn: 'root'
 })
 export class LoginService {  
-  
+  data: any;
+  session:boolean = false;
   constructor(private httpClient: HttpClient ) { 
+    this.httpClient.get('assets/users.json').subscribe({
+      next: (v) => { this.data = v; console.log(this.data); },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+  });
   }
   /**
    * Funcion que comprueba los datos del formulario con los de los usuarios mockeados, devuelve true si 
@@ -17,20 +23,22 @@ export class LoginService {
    * @returns Boolean si el usuario existe.
    */
   public obtenerUsuarioPorNombre(nombre: string, password: string): boolean {
-    const value = data.filter(data => data.name == nombre && data.password == password);
+    const value = data.filter(data => data.name == nombre && data.password == password)
     return value.length !==0;
   }
   public addUsuario(nombre: string){ 
-    localStorage.setItem('usuario_iniciado:', nombre);  
+    localStorage.setItem('usuario_iniciado:', nombre);
+    this.session = true;
+  }
+
+  closeSession(){
+    localStorage.clear();
+    this.session = false;
   }
   obtenerUsuarioIniciado(){
     return localStorage.getItem('usuario_iniciado:');
   }
-  isLogged():boolean {
-    let h = false;
-    if(localStorage.getItem('usuario_iniciado:')){h = true}
-    return h
-  }
+
 }
 
  

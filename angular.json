@@ -89,14 +89,26 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-              "jestConfig": "app-crud/src/app/jest.config.js",
-              "tsConfig": "app-crud/tsconfig.json",
-              "passWithNoTests": true,
-              "setupFile": "apps/myapp/src/test-setup.ts"
+            "jestConfig": "app-crud/src/app/jest.config.js",
+            "tsConfig": "app-crud/tsconfig.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/myapp/src/test-setup.ts"
           }
-      }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
       }
     }
   },
-  "defaultProject": "app-crud"
+  "defaultProject": "app-crud",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

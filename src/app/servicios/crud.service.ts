@@ -60,8 +60,5 @@ export class CrudService {
     const h = data.find(data => data.id == id)
     return JSON.stringify(h);
   }
-  closeSession(){
-    localStorage.clear();
-  }
   
 }

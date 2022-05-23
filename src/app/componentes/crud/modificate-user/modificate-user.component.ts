@@ -67,11 +67,5 @@ export class ModificateUserComponent{
     }
     
   }
-  /**
-   * Closes de Session by calling the crudService and navegate to de LogIn 
-   */
-  closeSession():void{
-    this._crudService.closeSession();
-    this._route.navigate(['/']);
-  }
+ 
 }

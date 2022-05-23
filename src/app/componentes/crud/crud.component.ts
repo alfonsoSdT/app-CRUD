@@ -51,11 +51,5 @@ export class CrudComponent{
   updateUser(id: number):void{
     this._route.navigate([`/crud/edit/${id}`])
   }
-  /**
-   * Closes de Session by calling the crudService and navegate to de LogIn 
-   */
-  closeSession():void{
-    this._crudService.closeSession();
-    this._route.navigate(['/']);
-  }
+  
 }
