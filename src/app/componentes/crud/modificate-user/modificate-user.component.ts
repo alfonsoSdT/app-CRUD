@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/modelo/client';
 import { CrudService } from 'src/app/servicios/crud.service';
+import { LoginService } from '../../../servicios/login.service';
 
 @Component({
   selector: 'app-modificate-user',
@@ -16,7 +17,7 @@ export class ModificateUserComponent{
   id!: string | null ;
   clienteJson: any;
 
-  constructor(private _crudService: CrudService, private _route: Router, private route: ActivatedRoute) {
+  constructor(private _crudService: CrudService,private _loginService: LoginService, private _route: Router, private route: ActivatedRoute) {
     this.getUserLogIn();
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -35,7 +36,7 @@ export class ModificateUserComponent{
    * Get the name of the user logged in
    */
   getUserLogIn():void{
-    this.usuarioIni = this._crudService.getUserLogIn();
+    this.usuarioIni = this._loginService.getUserLog();
   } 
   /**
    * Get JSON of the user according to the ID

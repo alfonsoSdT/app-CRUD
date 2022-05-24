@@ -59,7 +59,7 @@ export class LoginComponent {
    * @returns true if User exist in database otherwise it returns false
    */
   checkUser():boolean{
-    return this._loginService.obtenerUsuarioPorNombre(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
+    return this._loginService.checkUser(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
   }
   /**
    * Displays the modal if someone tries to logIn and the name of the user and password doesnt mach
@@ -73,11 +73,11 @@ export class LoginComponent {
    * Adds the name of the user logged in into de localStorage
    */
   addUser():void{
-    this._loginService.addUsuario(this.nombreDelUsuario?.value);
+    this._loginService.addUser(this.nombreDelUsuario?.value);
   }
 
   /**
-   * Funciones que se encargan de obtener los datos del formulario
+   * Gets the name of the user and password of the user from the form
    */
   get nombreDelUsuario(){
     return this.formularioLogIn.get('nombre');

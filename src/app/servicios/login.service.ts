@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import data from '../../assets/users.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,26 +16,35 @@ export class LoginService {
   });
   }
   /**
-   * Funcion que comprueba los datos del formulario con los de los usuarios mockeados, devuelve true si 
-   * nombre y contraseña coinciden con algun usuario. 
-   * @param nombre Nombre de usuario a comprobar.
-   * @param password Contraseña del usuario
-   * @returns Boolean si el usuario existe.
+   *CHecks the name and password with users mocked
+   * @param nombre name.
+   * @param password password
+   * @returns boolean, true if both match.
    */
-  public obtenerUsuarioPorNombre(nombre: string, password: string): boolean {
-    const value = data.filter(data => data.name == nombre && data.password == password)
+  public checkUser(nombre: string, password: string): boolean {
+    const value = this.data.filter((data: { name: string; password: string; }) => data.name == nombre && data.password == password)
     return value.length !==0;
   }
-  public addUsuario(nombre: string){ 
+  /**
+   * Adds the name of the user checked into the lockal storage
+   * @param nombre name of the user allready checked
+   */
+  public addUser(nombre: string):void{ 
     localStorage.setItem('usuario_iniciado:', nombre);
     this.session = true;
   }
-
-  closeSession(){
+  /**
+   * Closes de Session by calling the crudService and navegate to de LogIn 
+   */
+  closeSession():void{
     localStorage.clear();
     this.session = false;
   }
-  obtenerUsuarioIniciado(){
+  /**
+   * Gets the name of the user logged in
+   * @returns string | null
+   */
+  getUserLog():string | null{
     return localStorage.getItem('usuario_iniciado:');
   }
 

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/servicios/crud.service';
 import { Client } from 'src/app/modelo/client';
+import { LoginService } from '../../../servicios/login.service';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +14,7 @@ export class AddUserComponent{
   formularioLogIn: FormGroup;
   usuarioIni: string|null = null;
 
-  constructor(private _crudService: CrudService, private _route: Router) {
+  constructor(private _crudService: CrudService, private _loginService: LoginService, private _route: Router) {
     this.getUserLogIn();
     this.formularioLogIn = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
@@ -48,7 +49,7 @@ export class AddUserComponent{
    * Get the name of the user logged in
    */
   getUserLogIn(){
-    this.usuarioIni = this._crudService.getUserLogIn();
+    this.usuarioIni = this._loginService.getUserLog();
   }
 
 

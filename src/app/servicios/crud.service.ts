@@ -9,20 +9,20 @@ export class CrudService {
   
   constructor() { }
   /**
-   * Funcion que se encarga de añadir un cliente al resto de clientes mockeados
-   * @param nombre nombre del cliente
-   * @param id id del cliente
-   * @param firstName nombre de la persona
-   * @param lastName apellido de la persona
-   * @param age edad de la persona
-   * @param salario salario del cliente
+   * Adds a client to the clients saved
+   * @param nombre name
+   * @param id id 
+   * @param firstName first name
+   * @param lastName last name
+   * @param age age
+   * @param salario salary
    */
   addUser(h: Client){
     data.push(h)
   }
   /**
-   * Funcion que recibe de clientes.json todos los clientes mockeados y los devuelve en forma de string
-   * @returns Devuelve el string de todos los clientes mockeados
+   * Gets all the clients mocked and return a string with all of them
+   * @returns 
    */
   getUsers():string{
     var h: string;
@@ -30,35 +30,36 @@ export class CrudService {
     return h;
   }
   /**
-   * Funcion que elimina un cliente dado un id que se pasa por parametro
-   * @param id recibe como parametro el id del cliente a eliminar
+   * Deletes the user given an d
+   * @param id 
    */
   deleteUser(id: number){
     data.splice(id-1,1)
   }
+
   /**
-   * Funcion que devuelve el nombre del usuario que ha iniciado sesion
-   * @returns devuelve el nombre del usuarios que ha iniciado sesion
+   * Modificate the client
+   * @param h 
    */
-  getUserLogIn(){
-    return localStorage.getItem('usuario_iniciado:');
-  }
   editUser(h:Client){
     data[h.id-1] = h;
   }
+  /**
+   * Gets the last id in use
+   * @returns last id
+   */
   getLastID(){
     var id,h;
     h = data[data.length-1];
     return h.id;
   }
   /**
-   * 
-   * @param id id del cliente a modificar
-   * @returns los datos del cliente
+   * Get the info from a client given an id
+   * @param id 
+   * @returns 
    */
   getUser(id:number){
     const h = data.find(data => data.id == id)
     return JSON.stringify(h);
   }
-  
 }

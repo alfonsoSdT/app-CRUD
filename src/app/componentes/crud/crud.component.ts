@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/servicios/crud.service';
+import { LoginService } from '../../servicios/login.service';
 
 @Component({
   selector: 'app-crud',
@@ -12,7 +13,7 @@ export class CrudComponent{
   userJson: JSON | null = null;
   data!:any ;
 
-  constructor(private _crudService: CrudService, private _route: Router) { 
+  constructor(private _crudService: CrudService,private _loginService: LoginService, private _route: Router) { 
     this.getUserLoggedIn();
     this.getUsers();
   }
@@ -34,7 +35,7 @@ export class CrudComponent{
    * Get the name of the user logged in
    */
   getUserLoggedIn():void{
-    this.usuarioIni = this._crudService.getUserLogIn();
+    this.usuarioIni = this._loginService.getUserLog();
   }
   /**
    * Deletes the client with a given id

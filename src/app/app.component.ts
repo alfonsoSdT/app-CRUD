@@ -15,7 +15,7 @@ export class AppComponent {
   }
 
   /**
-   * Closes de Session by calling the crudService and navegate to de LogIn 
+   * Closes de Session by calling the loginService and navegate to de LogIn 
    */
    closeSession():void{
     this.loginService.closeSession();
