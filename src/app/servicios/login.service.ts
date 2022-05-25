@@ -36,9 +36,10 @@ export class LoginService {
   /**
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
-  closeSession():void{
+  closeSession():boolean{
     localStorage.clear();
     this.session = false;
+    return this.session;
   }
   /**
    * Gets the name of the user logged in

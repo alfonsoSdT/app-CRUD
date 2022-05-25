@@ -21,7 +21,9 @@ export class AppComponent {
     this.loginService.closeSession();
     this._route.navigate(['/']);
   }
-
+  /**
+   * Navegates to crud component
+   */
   home():void {
     this._route.navigate(['/crud']);
   }

@@ -30,7 +30,7 @@ export class LoginComponent {
   }
   onSubmit() {  
     this.setErrorName();
-    this.setErrorPassword();
+    this.setErrorPassword(this.passwordDelUsuario?.value);
     if (!(this.nombreDelUsuario?.value == '') && !(this.passwordDelUsuario?.value == ''))  {
       this.sesionIniciada = this.checkUser();
       if(this.sesionIniciada){
@@ -48,8 +48,8 @@ export class LoginComponent {
     {this.errorDisplayName = true; this. tried = true;}
     else{this.errorDisplayName=false;}
   }
-  setErrorPassword():void{
-    if(this.passwordDelUsuario?.value == '' && this.passwordDelUsuario?.errors?.required )
+  setErrorPassword(passwordDelUsuario:string):void{
+    if(passwordDelUsuario == '' && this.passwordDelUsuario?.errors?.required )
     {this.errorDisplayPassword = true; this.tried=true;}
     else{ this.errorDisplayPassword = false;}
   }
