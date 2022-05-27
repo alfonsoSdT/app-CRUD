@@ -17,14 +17,14 @@ export class CrudService {
    * @param age age
    * @param salario salary
    */
-  addUser(h: Client){
+  public addUser(h: Client):void{
     data.push(h)
   }
   /**
    * Gets all the clients mocked and return a string with all of them
    * @returns 
    */
-  getUsers():string{
+  public getUsers():string{
     var h: string;
     h = JSON.stringify(data);
     return h;
@@ -33,7 +33,7 @@ export class CrudService {
    * Deletes the user given an d
    * @param id 
    */
-  deleteUser(id: number){
+  public deleteUser(id: number):void{
     data.splice(id-1,1)
   }
 
@@ -41,14 +41,14 @@ export class CrudService {
    * Modificate the client
    * @param h 
    */
-  editUser(h:Client){
+  public editUser(h:Client):void{
     data[h.id-1] = h;
   }
   /**
    * Gets the last id in use
    * @returns last id
    */
-  getLastID(){
+  public getLastID():number{
     var id,h;
     h = data[data.length-1];
     return h.id;
@@ -58,7 +58,7 @@ export class CrudService {
    * @param id 
    * @returns 
    */
-  getUser(id:number){
+  public getUser(id:number):string{
     const h = data.find(data => data.id == id)
     return JSON.stringify(h);
   }

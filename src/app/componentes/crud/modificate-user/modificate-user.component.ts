@@ -22,14 +22,14 @@ export class ModificateUserComponent{
 
     this.id = this.route.snapshot.paramMap.get('id');
 
-    this.getUser();
+    this.clienteJson = this.getUser();
 
     this.formularioLogIn = new FormGroup({
-      firstName: new FormControl(this.clienteJson.firstName, [Validators.required]),
-      lastName: new FormControl(this.clienteJson.lastName, [Validators.required]),
-      name: new FormControl(this.clienteJson.name, [Validators.required]),
-      age: new FormControl(this.clienteJson.age, [Validators.required]),
-      salary: new FormControl(this.clienteJson.salary, [Validators.required])
+      firstName: new FormControl(this.clienteJson?.firstName, [Validators.required]),
+      lastName: new FormControl(this.clienteJson?.lastName, [Validators.required]),
+      name: new FormControl(this.clienteJson?.name, [Validators.required]),
+      age: new FormControl(this.clienteJson?.age, [Validators.required]),
+      salary: new FormControl(this.clienteJson?.salary, [Validators.required])
     });    
    }
   /**
@@ -41,13 +41,14 @@ export class ModificateUserComponent{
   /**
    * Get JSON of the user according to the ID
    */
-  getUser():void{
+  getUser(){
     let cliente, i;
     i = this.id;
     if(this.id != null){
       cliente = this._crudService.getUser(+this.id);
       this.clienteJson = JSON.parse(cliente);
     }
+    return this.clienteJson;
     
   }
   /**

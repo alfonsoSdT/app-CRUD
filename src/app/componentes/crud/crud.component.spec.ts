@@ -8,28 +8,28 @@ import { AddUserComponent } from './add-user/add-user.component';
 
 import { CrudComponent } from './crud.component';
 import { ModificateUserComponent } from './modificate-user/modificate-user.component';
+import { CrudService } from '../../servicios/crud.service';
+import { LoginService } from '../../servicios/login.service';
+import { Client } from '../../modelo/client';
 
 describe('CrudComponent', () => {
   let component: CrudComponent;
   let fixture: ComponentFixture<CrudComponent>;
 
-  let httpMock: HttpTestingController;
-  let httpClient: HttpClient;
-
+  let loginServiceStub: LoginService;
+  let crudServiceStub: CrudService;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule
       ],
-      
+      providers: [
+        CrudComponent,
+        LoginService,
+        CrudService
+      ]
     });
-    component = TestBed.inject(CrudComponent);
-    httpMock = TestBed.get(HttpTestingController);
-    httpClient = TestBed.inject(HttpClient)
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(CrudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

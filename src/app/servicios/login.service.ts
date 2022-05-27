@@ -36,7 +36,7 @@ export class LoginService {
   /**
    * Closes de Session by calling the crudService and navegate to de LogIn 
    */
-  closeSession():boolean{
+  public closeSession():boolean{
     localStorage.clear();
     this.session = false;
     return this.session;
@@ -45,7 +45,7 @@ export class LoginService {
    * Gets the name of the user logged in
    * @returns string | null
    */
-  getUserLog():string | null{
+  public getUserLog():string | null{
     return localStorage.getItem('usuario_iniciado:');
   }
 
