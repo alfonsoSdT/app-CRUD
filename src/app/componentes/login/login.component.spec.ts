@@ -28,4 +28,11 @@ fdescribe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should ', () => {
+    let name = 'Alfonso';
+    component.addUser(name);
+    fixture.detectChanges();
+    
+    //expect().toBeTruthy();
+  });
 });

@@ -32,7 +32,7 @@ export class LoginComponent {
     if (!(this.nombreDelUsuario?.value == '') && !(this.passwordDelUsuario?.value == ''))  {
       this.sesionIniciada = this.checkUser();
       if(this.sesionIniciada){
-        this.addUser();
+        this.addUser(this.nombreDelUsuario?.value);
         this._route.navigate(['crud']);
       }
       else {
@@ -70,8 +70,8 @@ export class LoginComponent {
   /**
    * Adds the name of the user logged in into de localStorage
    */
-  addUser():void{
-    this._loginService.addUser(this.nombreDelUsuario?.value);
+  addUser(name: string ):void{
+    this._loginService.addUser(name);
   }
 
   /**

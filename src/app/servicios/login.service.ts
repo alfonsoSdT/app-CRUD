@@ -9,11 +9,7 @@ export class LoginService {
   data: any;
   session:boolean = false;
   constructor(private httpClient: HttpClient ) { 
-    this.httpClient.get('assets/users.json').subscribe({
-      next: (v) => { this.data = v; console.log(this.data); },
-      error: (e) => console.error(e),
-      complete: () => console.info('complete') 
-  });
+    this.getUsers();
   }
   /**
    *CHecks the name and password with users mocked
@@ -24,6 +20,13 @@ export class LoginService {
   public checkUser(nombre: string, password: string): boolean {
     const value = this.data.filter((data: { name: string; password: string; }) => data.name == nombre && data.password == password)
     return value.length !==0;
+  }
+  public getUsers(){
+    this.httpClient.get('assets/users.json').subscribe({
+      next: (v) => { this.data = v; console.log(this.data); },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+  });
   }
   /**
    * Adds the name of the user checked into the lockal storage
