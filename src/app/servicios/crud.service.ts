@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
-import data from '../../assets/clientes.json';
 import { Client } from '../modelo/client';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
-  
-  constructor() { }
+  data:any;
+  constructor(private httpClient:HttpClient) {
+    this.httpClient.get('assets/clientes.json').subscribe({
+      next: (v) => { this.data = v; console.log(this.data); },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')});
+  }
   /**
    * Adds a client to the clients saved
    * @param nombre name
@@ -18,7 +23,7 @@ export class CrudService {
    * @param salario salary
    */
   public addUser(h: Client):void{
-    data.push(h)
+    this.data.push(h);
   }
   /**
    * Gets all the clients mocked and return a string with all of them
@@ -26,7 +31,7 @@ export class CrudService {
    */
   public getUsers():string{
     var h: string;
-    h = JSON.stringify(data);
+    h = JSON.stringify(this.data);
     return h;
   }
   /**
@@ -34,7 +39,7 @@ export class CrudService {
    * @param id 
    */
   public deleteUser(id: number):void{
-    data.splice(id-1,1)
+    this.data.splice(id-1,1)
   }
 
   /**
@@ -42,7 +47,7 @@ export class CrudService {
    * @param h 
    */
   public editUser(h:Client):void{
-    data[h.id-1] = h;
+    this.data[h.id-1] = h;
   }
   /**
    * Gets the last id in use
@@ -50,7 +55,7 @@ export class CrudService {
    */
   public getLastID():number{
     var id,h;
-    h = data[data.length-1];
+    h = this.data[this.data.length-1];
     return h.id;
   }
   /**
@@ -59,7 +64,7 @@ export class CrudService {
    * @returns 
    */
   public getUser(id:number):string{
-    const h = data.find(data => data.id == id)
+    const h = this.data.find((data: { id: number; }) => data.id == id)
     return JSON.stringify(h);
   }
 }

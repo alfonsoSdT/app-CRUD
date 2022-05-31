@@ -10,7 +10,7 @@ import { LoginService } from '../../servicios/login.service';
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-
+  let loginService: LoginService;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -28,11 +28,11 @@ fdescribe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should ', () => {
-    let name = 'Alfonso';
-    component.addUser(name);
-    fixture.detectChanges();
-    
-    //expect().toBeTruthy();
-  });
+  describe('display modal', () => {
+    it('should be true', () => {
+      component.muestraModal = false;
+      component.displayModal();
+      expect(component.muestraModal).toBeTruthy();
+    });
+  })
 });
