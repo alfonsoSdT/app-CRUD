@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import { FormsModule,FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { LoginService } from '../../servicios/login.service';
 import { Router } from '@angular/router';
 @Component({
@@ -27,28 +27,30 @@ export class LoginComponent {
     }) 
   }
   onSubmit() {  
-    this.setErrorName();
-    this.setErrorPassword(this.passwordDelUsuario?.value);
-    if (!(this.nombreDelUsuario?.value == '') && !(this.passwordDelUsuario?.value == ''))  {
-      this.sesionIniciada = this.checkUser();
+    this.onSubmitWithParams(this.nombreDelUsuario?.value, this.passwordDelUsuario?.value); 
+  }
+  onSubmitWithParams(name:string, psw: string){
+    this.setErrorName(name);
+    this.setErrorPassword(psw);
+    if (!(name == '') && !(psw == ''))  {
+      this.sesionIniciada = this.checkUser(name, psw);
       if(this.sesionIniciada){
-        this.addUser(this.nombreDelUsuario?.value);
+        this.addUser(name);
         this._route.navigate(['crud']);
       }
       else {
          this.displayModal();
       }
     }
-    
   }
-  setErrorName():void{
-    if(this.nombreDelUsuario?.value == '' && this.nombreDelUsuario?.errors?.required )
+  setErrorName(nombreDelUsuario:string):void{
+    if(nombreDelUsuario == '' && this.nombreDelUsuario?.errors?.required )
     {this.errorDisplayName = true; this. tried = true;}
     else{this.errorDisplayName=false;}
   }
   setErrorPassword(passwordDelUsuario:string):void{
     if(passwordDelUsuario == '' && this.passwordDelUsuario?.errors?.required )
-    {this.errorDisplayPassword = true; this.tried=true;}
+      {this.errorDisplayPassword = true; this.tried=true;}
     else{ this.errorDisplayPassword = false;}
   }
 
@@ -56,8 +58,8 @@ export class LoginComponent {
    * Function that checks if the user exist in the database
    * @returns true if User exist in database otherwise it returns false
    */
-  checkUser():boolean{
-    return this._loginService.checkUser(this.nombreDelUsuario?.value,this.passwordDelUsuario?.value)
+  checkUser(name:string, psw: string):boolean{
+    return this._loginService.checkUser(name , psw)
   }
   /**
    * Displays the modal if someone tries to logIn and the name of the user and password doesnt mach

@@ -14,7 +14,7 @@ export class CrudComponent{
   userJson: JSON | null = null;
   data!: any  ;
 
-  constructor(private _crudService: CrudService,private _loginService: LoginService, private _route: Router) { 
+  constructor(private _crudService: CrudService, private _loginService: LoginService, private _route: Router) { 
     this.getUserLoggedIn();
     this.getUsers();
   }
@@ -30,8 +30,7 @@ export class CrudComponent{
    * Gets into data all the clients mocked
    */
   getUsers():void{
-    if(this._crudService?.getUsers() != undefined){ this.data = JSON.parse(this._crudService?.getUsers());}
-    
+    this.data = JSON.parse(this._crudService?.getUsers());
   }
   /**
    * Get the name of the user logged in

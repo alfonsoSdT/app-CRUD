@@ -22,15 +22,30 @@ export class ModificateUserComponent{
 
     this.id = this.route.snapshot.paramMap.get('id');
 
-    this.clienteJson = this.getUser();
-
+    if(this.id !== null){
+      this.clienteJson = this.getUser(this.id);   
+    }
     this.formularioLogIn = new FormGroup({
       firstName: new FormControl(this.clienteJson?.firstName, [Validators.required]),
       lastName: new FormControl(this.clienteJson?.lastName, [Validators.required]),
       name: new FormControl(this.clienteJson?.name, [Validators.required]),
       age: new FormControl(this.clienteJson?.age, [Validators.required]),
       salary: new FormControl(this.clienteJson?.salary, [Validators.required])
-    });    
+    }); 
+    
+   }
+   onSubmit(){
+     if(this.id != null){
+      let client: Client = {
+        id: +this.id,
+        name: this.formularioLogIn.get("name")?.value,
+        firstName: this.formularioLogIn.get("firstName")?.value,
+        lastName: this.formularioLogIn.get('lastName')?.value,
+        age: this.formularioLogIn.get("age")?.value,
+        salary: this.formularioLogIn.get("salary")?.value
+      };
+      this.updateUser(client);
+     }
    }
   /**
    * Get the name of the user logged in
@@ -41,29 +56,19 @@ export class ModificateUserComponent{
   /**
    * Get JSON of the user according to the ID
    */
-  getUser(){
-    let cliente, i;
-    i = this.id;
-    if(this.id != null){
-      cliente = this._crudService.getUser(+this.id);
+  getUser(id:string){
+    let cliente;
+    if(id != null){
+      cliente = this._crudService.getUser(+id);
       this.clienteJson = JSON.parse(cliente);
     }
     return this.clienteJson;
-    
   }
   /**
    * Update the user and save all the new information
    */
-  updateUser():void{
+  updateUser(client: Client):void{
     if(this.id != null){
-      let client: Client = {
-        id: +this.id,
-        name: this.formularioLogIn.get("name")?.value,
-        firstName: this.formularioLogIn.get("firstName")?.value,
-        lastName: this.formularioLogIn.get('lastName')?.value,
-        age: this.formularioLogIn.get("age")?.value,
-        salary: this.formularioLogIn.get("salary")?.value
-      };
       this._crudService.editUser(client)
       this._route.navigate(['crud'])
     }
