@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './componentes/crud/add-user/add-user.component';
 import { ModificateUserComponent } from './componentes/crud/modificate-user/modificate-user.component';
 import { LoginGuardGuard } from './guard/login-guard.guard';
+import { HeaderComponent } from './componentes/header/header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginGuardGuard } from './guard/login-guard.guard';
     LoginComponent,
     CrudComponent,
     AddUserComponent,
-    ModificateUserComponent
+    ModificateUserComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

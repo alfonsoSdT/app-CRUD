@@ -1,33 +1,3 @@
-<div *ngIf="loginService.session" >
-    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: black;">  
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">  
-            <div class="navbar-item ">
-                <a class="button is-light"  routerLink="/crud">
-                    <img src="assets/home.png" class="home" style=" margin: 3px;">
-                </a>
-            </div>
-            </div>
-            <div class="navbar-end" style="display: block;">
-                <div class="navbar-item" >
-                    <div style=" margin: 3px;">
-                        <div class="tit">
-                            Usuario iniciado:
-                        </div>
-                        <div class="cuadro">
-                            {{loginService.getUserLog()}}
-                        </div>
-                    </div>
-                    <a class="button is-light"  (click)="closeSession()">
-                        <img src="assets/apagar.png" class="cerrar" style=" margin: 3px;">
-                        <strong>Cerrar sesión</strong>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </nav>
-</div>
-
+<app-header></app-header>
 <router-outlet></router-outlet>
 
