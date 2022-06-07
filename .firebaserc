@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "app-crud-1719c"
+  },
+  "targets": {
+    "app-crud-1719c": {
+      "hosting": {
+        "app-crud": [
+          "app-crud-1719c"
+        ]
+      }
+    }
   }
 }

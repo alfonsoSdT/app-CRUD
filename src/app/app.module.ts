@@ -12,6 +12,11 @@ import { AddUserComponent } from './componentes/crud/add-user/add-user.component
 import { ModificateUserComponent } from './componentes/crud/modificate-user/modificate-user.component';
 import { LoginGuardGuard } from './guard/login-guard.guard';
 import { HeaderComponent } from './componentes/header/header/header.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { HeaderComponent } from './componentes/header/header/header.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [LoginGuardGuard],
   bootstrap: [AppComponent]

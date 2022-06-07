@@ -103,6 +103,16 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "app-crud:build:production",
+            "firebaseProject": "app-crud-1719c",
+            "firebaseHostingSite": "app-crud-1719c"
+          }
         }
       }
     }

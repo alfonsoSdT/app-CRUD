@@ -1,8 +1,7 @@
 import { Component, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { LoginService } from './servicios/login.service';
-import { CrudService } from './servicios/crud.service';
-import { Router } from '@angular/router';
-import { HeaderComponent } from './componentes/header/header/header.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,8 +9,9 @@ import { HeaderComponent } from './componentes/header/header/header.component';
 })
 export class AppComponent {
   title = 'app-crud';
-  
-  constructor(){
+  items: Observable<any[]>;
+  constructor(firestore: AngularFirestore){
+    this.items = firestore.collection('items').valueChanges();
   }
 
   
